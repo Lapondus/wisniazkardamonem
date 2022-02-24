@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container">
+        <h1 class="text-center">Nowy produkt</h1>
+        <div class="col-6 offset-3">
+            <form action="/kolekcja_zimowa" method="POST" novalidate class="validated-form"
+                enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nazwa" class="form-label">Nazwa</label>
+                    <input type="text" class="form-control" name="produkt[nazwa]" id="nazwa" required>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="rozmiar" class="form-label">Rozmiar</label>
+                    <input type="text" class="form-control" name="produkt[rozmiar]" id="rozmiar" required>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div>
+                    <label for="cena" class="form-label">Cena</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="waluta">zł</span>
+                        <input type="number" class="form-control" name="produkt[cena]" id="cena" placeholder="0.00"
+                            aria-label="cena" aria-describedby="waluta" required>
+                    </div>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="zdjęcia" class="form-label">Dodaj zdjęcia</label>
+                    <input class="form-control" type="file" id="zdjęcia" name="zdjęcia" multiple>
+                </div>
+                <div class="mb-3">
+                    <label for="opis" class="form-label">Opis</label>
+                    <textarea type="text" class="form-control" name="produkt[opis]" id="opis" required></textarea>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="dostępność" class="form-label">Dostępność</label>
+                    <input type="text" class="form-control" name="produkt[dostępność]" id="dostępność" required>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Dodaj produkt</button>
+                </div>
+            </form>
+            <a href="/kolekcja_zimowa">Wróć</a>
+        </div>
+    </div>

@@ -1,0 +1,39 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <span id="logospan">
+      <a class="navbar-brand-lg" href="/">
+        <img id="logo" src="/Zdjecia/logowisniazkardamonem.png" alt="Logo">
+      </a>
+    </span>
+    <span class="order-lg-last">
+      <a class="nav-link" href="/">
+        <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M16.63 17.47l-.6-11a.51.51 0 00-.5-.47h-2v-.43a3.5 3.5 0 00-7 0V6h-2a.51.51 0 00-.5.47l-.62 11a.49.49 0 00.49.53h12.3a.49.49 0 00.43-.53zm-12.31-.42L4.9 7h10.2l.56 10.1-11.34-.05zM7.5 5.57a2.5 2.5 0 115 0V6h-5v-.43z"
+            fill="currentColor">
+          </path>
+        </svg>
+      </a>
+    </span>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link mt-1 ms-1" href="#">O nas</a>
+        <a class="nav-link mt-1" href="/kolekcja_zimowa">Kolekcja Zimowa</a>
+        <a class="nav-link mt-1" href="/kolekcja_letnia">Kolekcja Letnia</a>
+        <a class="nav-link mt-1" href="#">Pricing</a>
+      </div>
+      <div class="navbar-nav">
+        <% if(!currentUser) {%>
+          <a class="nav-link mt-1" href="/login">Zaloguj</a>
+          <a class="nav-link mt-1" href="/register">Zarejestruj</a>
+          <% }else{ %>
+            <a class="nav-link mt-1" href="/logout">Wyloguj</a>
+            <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

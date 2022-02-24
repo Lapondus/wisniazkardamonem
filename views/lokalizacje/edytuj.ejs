@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row">
+        <h1 class="text-center">Edytuj Lokalizację</h1>
+        <div class="col-6 offset-3">
+            <form action="/lokalizacje/<%=lokalizacja._id%>?_method=PUT" method="POST" novalidate
+                class="validated-form">
+                <div class="mb-3">
+                    <label for="miejscowość" class="form-label">Miejscowość</label>
+                    <input type="text" class="form-control" name="lokalizacja[miejscowość]" id="miejscowość"
+                        value="<%=lokalizacja.miejscowość %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="dostepność" class="form-label">Dostępność</label>
+                    <input type="text" class="form-control" name="lokalizacja[dostępność]" id="dostępność"
+                        value="<%=lokalizacja.dostępność %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="opis" class="form-label">Opis</label>
+                    <textarea type="text" class="form-control" name="lokalizacja[opis]" id="opis"
+                        required><%=lokalizacja.opis %></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="miejsce" class="form-label">Miejsce</label>
+                    <input type="text" class="form-control" name="lokalizacja[miejsce]" id="miejsce"
+                        value="<%=lokalizacja.miejsce %>" required>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Zatwierdź edycję</button>
+                </div>
+            </form>
+            <a href="/lokalizacje/<%= lokalizacja._id%>">Wróć do lokalizacji</a>
+        </div>
+    </div>

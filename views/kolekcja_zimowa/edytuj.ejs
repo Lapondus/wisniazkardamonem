@@ -1,0 +1,79 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container">
+        <h1 class="text-center">Edytuj produkt</h1>
+        <div class="col-6 offset-3">
+            <form action="/kolekcja_zimowa/<%=produkt._id%>?_method=PUT" method="POST" novalidate class="validated-form"
+                enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nazwa" class="form-label">Nazwa</label>
+                    <input type="text" class="form-control" name="produkt[nazwa]" id="nazwa" value="<%=produkt.nazwa%>"
+                        required>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="rozmiar" class="form-label">Rozmiar</label>
+                    <input type="text" class="form-control" name="produkt[rozmiar]" id="rozmiar"
+                        value="<%=produkt.rozmiar%>" required>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div>
+                    <label for="cena" class="form-label">Cena</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="waluta">zł</span>
+                        <input type="number" class="form-control" name="produkt[cena]" id="cena"
+                            value="<%=produkt.cena%>" placeholder="0.00" aria-label="cena" aria-describedby="waluta"
+                            required>
+                    </div>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="zdjęcia" class="form-label">Dodaj więcej zdjęć</label>
+                    <input class="form-control" type="file" id="zdjęcia" name="zdjęcia" multiple>
+                </div>
+                <div class="mb-3">
+                    <label for="opis" class="form-label">Opis</label>
+                    <textarea type="text" class="form-control" name="produkt[opis]" id="opis"
+                        required><%=produkt.opis%></textarea>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="dostępność" class="form-label">Dostępność</label>
+                    <input type="text" class="form-control" name="produkt[dostępność]" id="dostępność"
+                        value="<%=produkt.dostępność%>" required>
+                    <div class="valid-feedback">
+                        Gites!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="zdjęciaTabela" class="form-label">Usuń Zdjęcia</label>
+                    <div class="row row-cols-1 row-cols-md-4 g-4 mb-3" id="zdjęciaTabela">
+                        <% produkt.zdjęcia.forEach((zdjęcie, i)=> { %>
+                            <div class="col">
+                                <div class="card">
+                                    <label for="zdjęcie - <%= i %>">
+                                        <img class="card-img" src="<%= zdjęcie.thumbnail %>" alt="">
+                                        <div class="card-img-overlay text-end pt-1 pe-2">
+                                            <input class="form-check-input" type="checkbox" name="usuńZdjęcia[]"
+                                                value="<%= zdjęcie.filename %>" id="zdjęcie - <%= i %>">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Zatwierdź edycję</button>
+                </div>
+            </form>
+            <a href="/kolekcja_zimowa/<%=produkt._id%>">Wróć do produktu</a>
+        </div>
+    </div>

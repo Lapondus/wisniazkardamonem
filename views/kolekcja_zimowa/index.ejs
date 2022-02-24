@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container">
+        <h1>Wszystkie produkty</h1>
+        <% if(currentUser && currentUser.role=='admin' ) {%>
+            <div>
+                <a href="/kolekcja_zimowa/nowy">Nowy produkt</a>
+            </div>
+            <% } %>
+                <% for (let produkt of produkty) { %>
+                    <div class="card mb-3" >
+                        <div class="row">
+                            <div class="col-md-4">
+                                <% if(produkt.zdjęcia[0]) {%> 
+                                <img class="img-fluid" alt="" src="<%=produkt.zdjęcia[0].url%>">
+                            <% } %> 
+                            </div>
+                            <div class="col-md-8">
+                                <dir class="card-body">
+                                    <h5 class="card-title">
+                                        <%=produkt.nazwa%>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%=produkt.opis%>
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted">
+                                            <%=produkt.dostępność%>
+                                        </small>
+                                    </p>
+                                    <a class="btn btn-primary" href="/kolekcja_zimowa/<%= produkt._id %>">Podgląd
+                                        <%=produkt.nazwa%>
+                                    </a>
+                                </dir>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                        <div>
+                            <a href="/">Strona Główna</a>
+                        </div>
+    </div>

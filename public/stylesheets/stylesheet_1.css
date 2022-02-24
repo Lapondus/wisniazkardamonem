@@ -1,0 +1,103 @@
+html {
+  overflow-y: scroll; 
+}
+#bootstrap-overrides{
+  color: #4d4d4d;
+}
+#bootstrap-overrides main{
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+#bootstrap-overrides main a{
+  color: inherit;
+  text-decoration: none;
+}
+@media (min-width: 920px){
+  #bootstrap-overrides main{
+    max-width:none;
+  }
+}
+@media (min-width: 768px){
+  #bootstrap-overrides main{
+    max-width:none;
+  }
+}
+@media (min-width: 576px){
+  #bootstrap-overrides main{
+    max-width:none;
+  }
+}
+#bootstrap-overrides nav{
+  background-color: #fffae5;
+  font-family: 'Emblema One', cursive;
+}
+#logo{
+  width: 80px;
+}
+#logospan{
+  margin: 0px 30px;
+}
+#bootstrap-overrides svg{
+  color: #4d4d4d;
+}
+#bootstrap-overrides .collapse.show div a{
+  text-align: center;
+}
+#bootstrap-overrides .collapsing div a{
+  text-align: center;
+}
+#bootstrap-overrides .karuzela{
+  aspect-ratio: 3/2;
+}
+#bootstrap-overrides #kolekcje{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+#bootstrap-overrides .komorka{
+  width: 100%;
+  height:100%;
+  position:relative;
+  text-align:center;
+  filter:contrast(95%);
+}
+#bootstrap-overrides .komorka:hover{
+  width: 100%;
+  height:100%;
+  position:relative;
+  text-align:center;
+  filter:contrast(115%);
+}
+#bootstrap-overrides .centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index : 1;
+}
+#bootstrap-overrides .centered a{
+  font-family: 'Open Sans', sans-serif;
+}
+#bootstrap-override .btn-outline-secondary, .btn-outline-secondary:hover{
+  background-color: #fffae5;
+  color: #4d4d4d;
+}
+#bootstrap-overrides .kolekcje{
+  width: 100%;
+  aspect-ratio: 2/1;
+}
+#bootstrap-overrides footer{
+  font-family: 'Emblema One', cursive;
+  background-color: #fffae5;
+}
+#cluster-map{
+  width: 100%;
+  height: 500px
+}
+#map{
+  width: 100%;
+  height: 300px; 
+}

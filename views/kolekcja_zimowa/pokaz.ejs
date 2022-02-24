@@ -1,0 +1,128 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div id="karuzelaProduktu" class="carousel slide" data-bs-ride="carousel">
+                    <% if(produkt.zdjęcia.length> 1) {%>
+                        <div class="carousel-indicators">
+                            <% produkt.zdjęcia.forEach((zdjęcie, i)=> { %>
+                                <button type="button" data-bs-target="#karuzelaProduktu" data-bs-slide-to="<%= i %>"
+                                    <%=i===0 ? 'class=active aria-current=true' : '' %> aria-label="Slide <%= i+1 %>
+                                        "></button>
+                                <% }) %>
+                        </div>
+                        <% } %>
+                            <div class="carousel-inner">
+                                <% produkt.zdjęcia.forEach((zdjęcie, i)=> { %>
+                                    <div class="carousel-item <%= i===0 ? 'active' : ''%>  ">
+                                        <img src="<%= zdjęcie.url%>" class="d-block w-100" alt="">
+                                    </div>
+                                    <% }) %>
+                            </div>
+                            <% if(produkt.zdjęcia.length> 1) {%>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#karuzelaProduktu"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Poprzedni</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#karuzelaProduktu"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Następny</span>
+                                </button>
+                                <% } %>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%=produkt.nazwa%>
+                        </h5>
+                        <p class="card-text">
+                            <%=produkt.opis%>
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <%=produkt.dostępność%>
+                        </li>
+                        <li class="list-group-item">
+                            Rozmiar <%=produkt.rozmiar%>
+                        </li>
+                        <% if(currentUser && currentUser.role=='admin' ) {%>
+                            <li class="list-group-item">
+                                Dodane przez <%=produkt.author.username%> - <%=produkt.author.role%>
+                            </li>
+                            <% } %>
+                                <li class="list-group-item">
+                                    <%=produkt.cena%> zł
+                                </li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="/kolekcja_zimowa" class="card-link">Wszystkie produkty</a>
+                        <% if(currentUser && currentUser.role=='admin' ) {%>
+                            <a href="/kolekcja_zimowa/<%=produkt._id%>/edytuj" class="card-link">Edytuj</a>
+                            <form action="/kolekcja_zimowa/<%=produkt._id%>?_method=DELETE" method="Post">
+                                <button>Usuń</button>
+                            </form>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <% if(currentUser) {%>
+                    <h2>Pozostaw recenzję</h2>
+                    <form action="/kolekcja_zimowa/<%=produkt._id%>/recenzje" method="POST" class="mb-3 validated-form"
+                        novalidate>
+                        <div class="mb-3">
+                            <fieldset class="starability-basic">
+                                <input type="radio" id="no-rate" class="input-no-rate" name="recenzja[ocena]" value="1"
+                                    checked aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="recenzja[ocena]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="recenzja[ocena]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="recenzja[ocena]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="recenzja[ocena]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="recenzja[ocena]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                        </div>
+                        <div class="mb-3">
+                            <label for="body">Recenzja</label>
+                            <textarea class="form-control" name="recenzja[body]" id="body" cols="30" rows="3"
+                                required></textarea>
+                        </div>
+                        <button class="btn btn-success">Zatwierdź</button>
+                    </form>
+                    <% } %>
+                        <% for(let recenzja of produkt.recenzje) { %>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%=recenzja.author.username%>
+                                            <% if(recenzja.author.role=='admin' ) {%>
+                                                - <%=recenzja.author.role%>
+                                                    <% } %>
+                                    </h5>
+                                    <p class="starability-result" data-rating="<%=recenzja.ocena%>">
+                                        Rated: <%=recenzja.ocena%> stars
+                                    </p>
+                                    <p class="card-text">
+                                        Recenzja: <%=recenzja.body%>
+                                    </p>
+                                    <% if((currentUser && recenzja.author.equals(currentUser._id)) || (currentUser &&
+                                        currentUser.role=='admin' )) {%>
+                                        <form
+                                            action="/kolekcja_zimowa/<%=produkt._id%>/recenzje/<%=recenzja._id%>?_method=DELETE"
+                                            method="POST">
+                                            <button class="btn btn-sm btn-danger">Usuń</button>
+                                        </form>
+                                        <% } %>
+                                </div>
+                            </div>
+                            <%}%>
+            </div>
+        </div>
+    </div>

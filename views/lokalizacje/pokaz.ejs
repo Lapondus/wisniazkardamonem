@@ -1,0 +1,59 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center">
+            <div id='map'></div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title container d-flex justify-content-center">
+                        <%= lokalizacja.miejscowość%>
+                    </h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <%= lokalizacja.miejsce%>
+                        </li>
+                        <li class="list-group-item">
+                            <%= lokalizacja.dostępność%>
+                        </li>
+                        <li class="list-group-item">
+                            <%=lokalizacja.opis%>
+                        </li>
+                        <% if(currentUser && currentUser.role=='admin' ) {%>
+                            <li class="list-group-item">
+                                Dodane przez <%=lokalizacja.author.username%> - <%=lokalizacja.author.role%>
+                            </li>
+                            <% } %>
+                    </ul>
+                </div>
+                <% if(currentUser && currentUser.role=='admin' ) {%>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card-body">
+                                    <form action="/lokalizacje/<%=lokalizacja._id%>/edytuj" class="card-link">
+                                        <button class="btn-info">Edytuj</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card-body">
+                                    <form action="/lokalizacje/<%=lokalizacja._id%>?_method=DELETE" class="card-link"
+                                        method=POST>
+                                        <button class="btn-danger">Usuń</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 container d-flex justify-content-center">
+        <a href="/lokalizacje">Wszystkie lokalizacje</a>
+    </div>
+    <script>
+        ///////WYŁĄĆYĆ FORMAT ON SAVE BO ROBI DZIURE I html validate scripts bo oba źle działają z ejs
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const lokalizacja = <%- JSON.stringify(lokalizacja) %>;
+    </script>
+    <script src="/scripts/showPageMap.js"></script>
