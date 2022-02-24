@@ -7,7 +7,7 @@ const { validateURForm, validateULForm, isLoggedIn } = require('../middleware');
 
 router.route('/register')
     .get(uzytkownicy.renderRegister)
-    .get(validateURForm, catchAsync(uzytkownicy.register));
+    .post(validateURForm, catchAsync(uzytkownicy.register));
 
 router.route('/login')
     .get(uzytkownicy.renderLogin)
