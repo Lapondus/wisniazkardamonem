@@ -137,7 +137,9 @@ app.use(
                 "data:",
                 "https://res.cloudinary.com/wisniazkardamonem/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
             ],
-            fontSrc    : [ "'self'", ...fontSrcUrls ]
+            fontSrc    : [ "'self'", ...fontSrcUrls ],
+            childSrc: ["blob:"],
+            mediaSrc   : [ "https://res.cloudinary.com/dv5vm4sqh/wisniazkardamonem/" ]
         }
     })
 );
