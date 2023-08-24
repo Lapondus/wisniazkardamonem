@@ -8,4 +8,3 @@
 - [ ] Change comments
 - [X] Fix gitignore photos
 - [ ] Propably do some other stuff
--
