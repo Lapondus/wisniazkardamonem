@@ -5,6 +5,6 @@
 
 
 ###STILL NEED TO:
--[] Change comments
--[] Fix gitignore photos
--[]Propably do some other stuff
+- [] Change comments
+- [] Fix gitignore photos
+- []Propably do some other stuff
