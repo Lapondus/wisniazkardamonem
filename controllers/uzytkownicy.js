@@ -27,7 +27,11 @@ module.exports.login = (req, res) => {
     res.redirect(redirectUrl);
 }
 module.exports.logout = (req, res) => {
-    req.logout();
+    //req.logout(); older version
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+      });
     req.flash('success', "Do zobaczenia!");
     res.redirect('/');
 }
